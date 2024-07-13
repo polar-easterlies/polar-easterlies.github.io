@@ -16,15 +16,15 @@
   <meta name="author" content="Polar Easterlies">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言 很多任务处理时间较长，想观察任务运行状况时需要用到进度条，才疏学浅如有疑问或建议请多多留言评论，感谢支持！ 青铜段位 使用print函数多行输出，在小样本时效果比较清晰，然而一旦数据过大，会浪费很多内存 123456X &#x3D; 10000for i in range(X):    for j in range(X):        k&#x3D;j*i        print(k)print(&amp;quot">
+    <meta name="description" content="来看看你在哪个段位吧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论进度条的多种姿势">
 <meta property="og:url" content="https://github.com/polar-easterlies/polar-easterlies.github.io.git/2024/07/12/%E8%AE%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%A7%BF%E5%8A%BF/index.html">
 <meta property="og:site_name" content="Polar Eaterlies">
-<meta property="og:description" content="前言 很多任务处理时间较长，想观察任务运行状况时需要用到进度条，才疏学浅如有疑问或建议请多多留言评论，感谢支持！ 青铜段位 使用print函数多行输出，在小样本时效果比较清晰，然而一旦数据过大，会浪费很多内存 123456X &#x3D; 10000for i in range(X):    for j in range(X):        k&#x3D;j*i        print(k)print(&amp;quot">
+<meta property="og:description" content="来看看你在哪个段位吧">
 <meta property="og:locale" content="zn_CN">
 <meta property="article:published_time" content="2024-07-11T16:22:09.000Z">
-<meta property="article:modified_time" content="2024-07-13T12:27:26.110Z">
+<meta property="article:modified_time" content="2024-07-13T12:40:21.797Z">
 <meta property="article:author" content="Polar Easterlies">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -114,7 +114,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/polar-easterlies/polar-easterlies.github.io.git/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Home</span>
               </a>
             </li>
           
@@ -126,7 +126,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/polar-easterlies/polar-easterlies.github.io.git/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archives</span>
               </a>
             </li>
           
@@ -138,7 +138,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/polar-easterlies/polar-easterlies.github.io.git/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categories</span>
               </a>
             </li>
           
@@ -150,7 +150,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/polar-easterlies/polar-easterlies.github.io.git/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Tags</span>
               </a>
             </li>
           
@@ -162,7 +162,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/polar-easterlies/polar-easterlies.github.io.git/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>About</span>
               </a>
             </li>
           
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          320 wörter
+          336 words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          3 minuten
+          3 mins
         
       </span>
     
@@ -285,15 +285,21 @@
 手搓进度条</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">X = <span class="hljs-number">10000</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>        k=j*i<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;进度&#x27;</span>,<span class="hljs-string">f&#x27;|<span class="hljs-subst">&#123;<span class="hljs-string">&quot;*&quot;</span>*((i+<span class="hljs-number">1</span>)*<span class="hljs-number">50</span>//X):<span class="hljs-number">50</span>&#125;</span>|&#x27;</span>,<br>    <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;(i+<span class="hljs-number">1</span>)*<span class="hljs-number">100</span>//X&#125;</span>%&#x27;</span>,<br>    end=<span class="hljs-string">&#x27;\r&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n完成！&quot;</span>)<br></code></pre></td></tr></table></figure>
 <h1>钻石段位</h1>
-<p><strong>使用三方库</strong><br>
-<mark>progress库</mark></p>
+<p><strong>使用三方库</strong></p>
+<hr>
+<p><mark>progress库</mark></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> progress bar <span class="hljs-keyword">import</span> Bar<br>X = <span class="hljs-number">10000</span><br><span class="hljs-keyword">with</span> Bar(<span class="hljs-string">&#x27;进度&#x27;</span>,<span class="hljs-built_in">max</span>=X) <span class="hljs-keyword">as</span> bar:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>            k=j*i<br>        bar.<span class="hljs-built_in">next</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n完成！&quot;</span>)<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> progress bar <span class="hljs-keyword">import</span> Bar<br>X = <span class="hljs-number">10000</span><br><span class="hljs-keyword">with</span> Bar(<span class="hljs-string">&#x27;剩余时长&#x27;</span>,<span class="hljs-built_in">max</span>=X,fill=<span class="hljs-string">&#x27;❀&#x27;</span>,<br>				suffix=<span class="hljs-string">&#x27;%(percent).1f%%-%(eta)ds&#x27;</span>) <span class="hljs-keyword">as</span> bar:<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>            k=j*i<br>        bar.<span class="hljs-built_in">next</span>()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n完成！&quot;</span>)<br></code></pre></td></tr></table></figure>
+<hr>
 <p><mark>tqdm库</mark></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm<br>X = <span class="hljs-number">10000</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm(<span class="hljs-built_in">range</span>(X)):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>        k=j*i<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n完成！&quot;</span>)<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> tqdm(.rich/.notebook/.tk) <span class="hljs-keyword">import</span> trange<br>X = <span class="hljs-number">10000</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> trange(<span class="hljs-built_in">range</span>(X)):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>        k=j*i<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n完成！&quot;</span>)<br></code></pre></td></tr></table></figure>
+<hr>
 <p><mark>alive-progress库</mark></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> alive_progress.styles <span class="hljs-keyword">import</span> showtime<br>showtime()<br>X = <span class="hljs-number">10000</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm(<span class="hljs-built_in">range</span>(X)):<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(X):<br>        k=j*i<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n完成！&quot;</span>)<br></code></pre></td></tr></table></figure>
+<hr>
+<h1>参考</h1>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43734080/article/details/139814913">python实现进度条的方法和实现代码</a></p>
 
                 
               </div>
@@ -317,20 +323,20 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Author</div>
           <div>Polar Easterlies</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Posted on</div>
           <div>July 12, 2024</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licensed under</div>
           <div>
             
               
@@ -359,7 +365,7 @@
                       <a href="/polar-easterlies/polar-easterlies.github.io.git/2024/07/13/%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80-%E8%AE%BA%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="小试牛刀-论搭建个人博客">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">小试牛刀-论搭建个人博客</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
@@ -368,7 +374,7 @@
                     
                       <a href="/polar-easterlies/polar-easterlies.github.io.git/2024/07/12/Ever/" title="Ever">
                         <span class="hidden-mobile">Ever</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -389,7 +395,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Table of Contents</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -445,7 +451,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -453,7 +459,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -632,7 +638,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
 </body>
 </html>
