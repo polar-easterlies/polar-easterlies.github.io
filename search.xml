@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Ever</title>
+    <url>/2024/07/12/Ever/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>小试牛刀-论搭建个人博客</title>
+    <url>/2024/07/13/%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80-%E8%AE%BA%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p>相信很多计算机专业和非计算机专业的小伙伴使用各种平台（比如CSDN、知乎、公众号、简书等等）写过自己的技术博客，但看到那么多大佬的个性化博客，其实心里一定早就跃跃欲试搭建一个自己的博客吧。希望下面的内容能对你有所帮助，才疏学浅如有疑问或建议请评论留言，感谢支持！</p>
+<h1>教程</h1>
+<h2 id="1-安装node">1.安装node</h2>
+<p>官网指路：<a href="https://nodejs.org/en/download/package-manager"></a><br>
+windows:以管理员身份打开powershell</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># installs fnm (Fast Node Manager)</span></span><br><span class="line">winget install Schniz.fnm</span><br><span class="line"></span><br><span class="line"><span class="comment"># download and install Node.js</span></span><br><span class="line">fnm use <span class="literal">--install-if-missing</span> <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># verifies the right Node.js version is in the environment</span></span><br><span class="line">node <span class="literal">-v</span> <span class="comment"># should print `v20.15.0`</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># verifies the right NPM version is in the environment</span></span><br><span class="line">npm <span class="literal">-v</span> <span class="comment"># should print `10.7.0`</span></span><br></pre></td></tr></table></figure>
+<p>第二个命令行出错修改为</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">fnm install <span class="number">22</span></span><br></pre></td></tr></table></figure>
+<p>第三个命令行出错先重复上面的命令找到installation文件夹所在位置打开cmd再输入命令</p>
+<figure class="highlight plaintext"><figcaption><span>-v</span></figcaption><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h2 id="2-安装hexo">2.安装hexo</h2>
+<p>新建一个名为blog的文件夹，并在文件夹下打开GitBash输入命令</p>
+<figure class="highlight plaintext"><figcaption><span>-v</span></figcaption><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>检查是否安装成功</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">hexo <span class="literal">-v</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-链接github">3.链接github</h2>
+<p>在&quot;E:\blog\myblog_config.yml”文件中修改</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">language: zn<span class="literal">-CN</span></span><br><span class="line"></span><br><span class="line">post_asset_folder: true   <span class="comment">#改成true后在生成新文章后既有md文件也有文件夹比较清楚</span></span><br><span class="line"></span><br><span class="line">theme: fluid         <span class="comment">#选择性修改，这里使用fluid主题，需要重新创建一个_config.fluid.yml文件将_config.yml文件中的内容复制进去，之后的细节风格修改均在_config.fluid.yml中实现</span></span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: ssh地址(见github)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>GitBash中输入如下命令</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>发现报错</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">FATAL Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: Spawn failed</span></span><br><span class="line"><span class="string">    at ChildProcess.&lt;anonymous&gt; (E:\blog\myblog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (node:events:520:28)</span></span><br><span class="line"><span class="string">    at cp.emit (E:\blog\myblog\node_modules\cross-spawn\lib\enoent.js:34:29)</span></span><br><span class="line"><span class="string">    at ChildProcess._handle.onexit (node:internal/child_process:294:12)</span></span><br></pre></td></tr></table></figure>
+<p>检查链接状态</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh <span class="literal">-vT</span> git@github.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">OpenSSH_9.<span class="number">6</span>p1, OpenSSL <span class="number">3.2</span>.<span class="number">1</span> <span class="number">30</span> Jan <span class="number">2024</span></span><br><span class="line">debug1: Reading configuration <span class="keyword">data</span> /etc/ssh/ssh_config</span><br><span class="line">debug1: Connecting to github.com [<span class="number">127.0</span><span class="type">.0.1</span>] port <span class="number">22</span>.</span><br><span class="line">debug1: connect to address <span class="number">127.0</span>.<span class="number">0.1</span> port <span class="number">22</span>: Connection refused</span><br><span class="line">ssh: connect to host github.com port <span class="number">22</span>: Connection refused</span><br></pre></td></tr></table></figure>
+<p>改进修改hosts文件先将&quot;C:\Windows\System32\drivers\etc\hosts”中文件复制到桌面，使用记事本打开修改</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment">#	127.0.0.1       localhost</span></span><br><span class="line"><span class="comment">#	::1             localhost</span></span><br><span class="line"><span class="comment"># github</span></span><br><span class="line"><span class="number">140.82</span>.<span class="number">113.4</span> github.com</span><br></pre></td></tr></table></figure>
+<p>再次检查</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh <span class="literal">-vT</span> git@github.com</span><br></pre></td></tr></table></figure>
+<p>发现链接成功</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">debug1: channel <span class="number">0</span>: free: client<span class="literal">-session</span>, nchannels <span class="number">1</span></span><br><span class="line">Transferred: sent <span class="number">3160</span>, received <span class="number">2976</span> bytes, <span class="keyword">in</span> <span class="number">0.8</span> seconds</span><br><span class="line">Bytes per second: sent <span class="number">3768.6</span>, received <span class="number">3549.1</span></span><br><span class="line">debug1: <span class="keyword">Exit</span> status <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<details open>
+<summary><span class="pre-summary">&nbsp;</span><strong>点击查看隐藏内容</strong></summary><h2 id="Extra">Extra</h2>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">hexo new post 文章标题    <span class="comment">#新建文章</span></span><br><span class="line">hexo g <span class="literal">-d</span>                <span class="comment">#推送文章</span></span><br><span class="line">hexo s                   <span class="comment">#查看网站    Ctrl+C退出</span></span><br></pre></td></tr></table></figure>
+</details>
+<p>完结撒花！如有疑问请评论留言或小小支持下！</p>
+<h1>参考</h1>
+<p><a href="https://blog.csdn.net/ExcellentChaya/article/details/139520894">https://blog.csdn.net/ExcellentChaya/article/details/139520894</a><br>
+<a href="https://blog.csdn.net/pijiguai/article/details/122353357">https://blog.csdn.net/pijiguai/article/details/122353357</a><br>
+<a href="https://blog.csdn.net/weixin_41256398/article/details/117994899">https://blog.csdn.net/weixin_41256398/article/details/117994899</a><br>
+<a href="https://blog.csdn.net/qq_59039063/article/details/132459418">https://blog.csdn.net/qq_59039063/article/details/132459418</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>论进度条的多种姿势</title>
+    <url>/2024/07/12/%E8%AE%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%A7%BF%E5%8A%BF/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p><em>很多任务处理时间较长，想观察任务运行状况时需要用到进度条，才疏学浅如有疑问或建议请多多留言评论，感谢支持！</em></p>
+<h1>青铜段位</h1>
+<p>使用print函数多行输出，在小样本时效果比较清晰，<s>然而一旦数据过大，会浪费很多内存</s></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        k=j*i</span><br><span class="line">        <span class="built_in">print</span>(k)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>改进</strong><br>
+可以尝试将情况写在同一行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        k=j*i</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;X&#125;</span>&quot;</span>,end=<span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h1>黄金段位</h1>
+<p><strong>加强</strong><br>
+手搓进度条</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        k=j*i</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;进度&#x27;</span>,<span class="string">f&#x27;|<span class="subst">&#123;<span class="string">&quot;*&quot;</span>*((i+<span class="number">1</span>)*<span class="number">50</span>//X):<span class="number">50</span>&#125;</span>|&#x27;</span>,</span><br><span class="line">    <span class="string">f&#x27;<span class="subst">&#123;(i+<span class="number">1</span>)*<span class="number">100</span>//X&#125;</span>%&#x27;</span>,</span><br><span class="line">    end=<span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h1>钻石段位</h1>
+<p><strong>使用三方库</strong></p>
+<hr>
+<p><mark>progress库</mark></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> progress bar <span class="keyword">import</span> Bar</span><br><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">with</span> Bar(<span class="string">&#x27;进度&#x27;</span>,<span class="built_in">max</span>=X) <span class="keyword">as</span> bar:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">            k=j*i</span><br><span class="line">        bar.<span class="built_in">next</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> progress bar <span class="keyword">import</span> Bar</span><br><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">with</span> Bar(<span class="string">&#x27;剩余时长&#x27;</span>,<span class="built_in">max</span>=X,fill=<span class="string">&#x27;❀&#x27;</span>,</span><br><span class="line">				suffix=<span class="string">&#x27;%(percent).1f%%-%(eta)ds&#x27;</span>) <span class="keyword">as</span> bar:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">            k=j*i</span><br><span class="line">        bar.<span class="built_in">next</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><mark>tqdm库</mark></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(X)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        k=j*i</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm(.rich/.notebook/.tk) <span class="keyword">import</span> trange</span><br><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> trange(<span class="built_in">range</span>(X)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        k=j*i</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><mark>alive-progress库</mark></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> alive_progress.styles <span class="keyword">import</span> showtime</span><br><span class="line">showtime()</span><br><span class="line">X = <span class="number">10000</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(X)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(X):</span><br><span class="line">        k=j*i</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>参考</h1>
+<p><a href="https://blog.csdn.net/weixin_43734080/article/details/139814913">python实现进度条的方法和实现代码</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>论C++函数不完全总结（持续更新）</title>
+    <url>/2024/07/14/%E8%AE%BAC-%E5%87%BD%E6%95%B0%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%BB%E7%BB%93%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p>CPP标准更新换代，标准库中的函数也不断变化，下面总结一些CPP函数用法供参考学习，才疏学浅如有疑问请评论或留言，感谢支持！</p>
+<h1>数组操作</h1>
+<h2 id="push-back-函数">push_back()函数</h2>
+<p>将一个新元素加到vector(通常指代动态数组，是一种线性表数据结构)的最后面,位置为当前最后一个元素的下一个元素，参数为要插入的值</p>
+<h2 id="pop-back-函数">pop_back()函数</h2>
+<p>移除最后一个元素</p>
+<h2 id="empty-函数">empty()函数</h2>
+<p>判断vector是否为空，如果返回true为空</p>
+<h2 id="erase-函数">erase()函数</h2>
+<p>删除指定元素</p>
+<h2 id="find-函数">find()函数</h2>
+<p>搜索定位指定元素，使用 find() 函数之前，需要包含头文件 &lt; algorithm &gt;</p>
+<h2 id="insert-函数">insert()函数</h2>
+<p>在指定位置之前插入一个或多个元素</p>
+<h2 id="swap-函数">swap()函数</h2>
+<p>交换两个数的值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在vec末尾添加666</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">666</span>);</span><br><span class="line"><span class="comment">//删除vec最后一个元素</span></span><br><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line"><span class="comment">//判断vec是否为空，若为空则返回true</span></span><br><span class="line">vec.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">//删除指定元素,索引a到b</span></span><br><span class="line">vec.<span class="built_in">erase</span>(a,b+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//查找指定元素m</span></span><br><span class="line">vec.<span class="built_in">find</span>(vec.<span class="built_in">begin</span>(),vec.<span class="built_in">end</span>(),m);</span><br><span class="line"><span class="comment">//在指定索引位置n前插入一个或多个元素</span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec.<span class="built_in">begin</span>()+n,&#123;<span class="number">10</span>,<span class="number">30</span>,<span class="number">40</span>&#125;);</span><br><span class="line"><span class="comment">//清空所有元素</span></span><br><span class="line">vec.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">//交换两个对象值</span></span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> b=<span class="number">2</span>;</span><br><span class="line">std::<span class="built_in">swap</span>(a,b);</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://blog.csdn.net/Crocodile1006/article/details/131797666?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-131797666-blog-96716344.235%5Ev43%5Epc_blog_bottom_relevance_base3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=4">【C++】STL——vector的使用、 vector增删查改函数的介绍和使用、push_back和pop_back、operator</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/06/21/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
