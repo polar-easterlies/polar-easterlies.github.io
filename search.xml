@@ -86,6 +86,25 @@ windows:以管理员身份打开powershell</p>
 ]]></content>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/06/21/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>论C++函数不完全总结（持续更新）</title>
     <url>/2024/07/14/%E8%AE%BAC-%E5%87%BD%E6%95%B0%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%BB%E7%BB%93%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
     <content><![CDATA[<h1>前言</h1>
@@ -107,25 +126,6 @@ windows:以管理员身份打开powershell</p>
 <p>交换两个数的值</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在vec末尾添加666</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">666</span>);</span><br><span class="line"><span class="comment">//删除vec最后一个元素</span></span><br><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line"><span class="comment">//判断vec是否为空，若为空则返回true</span></span><br><span class="line">vec.<span class="built_in">empty</span>();</span><br><span class="line"><span class="comment">//删除指定元素,索引a到b</span></span><br><span class="line">vec.<span class="built_in">erase</span>(a,b+<span class="number">1</span>);</span><br><span class="line"><span class="comment">//查找指定元素m</span></span><br><span class="line">vec.<span class="built_in">find</span>(vec.<span class="built_in">begin</span>(),vec.<span class="built_in">end</span>(),m);</span><br><span class="line"><span class="comment">//在指定索引位置n前插入一个或多个元素</span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec.<span class="built_in">begin</span>()+n,&#123;<span class="number">10</span>,<span class="number">30</span>,<span class="number">40</span>&#125;);</span><br><span class="line"><span class="comment">//清空所有元素</span></span><br><span class="line">vec.<span class="built_in">clear</span>();</span><br><span class="line"><span class="comment">//交换两个对象值</span></span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> b=<span class="number">2</span>;</span><br><span class="line">std::<span class="built_in">swap</span>(a,b);</span><br></pre></td></tr></table></figure>
 <p>参考：<a href="https://blog.csdn.net/Crocodile1006/article/details/131797666?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-131797666-blog-96716344.235%5Ev43%5Epc_blog_bottom_relevance_base3&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=4">【C++】STL——vector的使用、 vector增删查改函数的介绍和使用、push_back和pop_back、operator</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/06/21/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
 </search>
