@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杂货店之谜 - 复古推理解谜游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', 'SimSun', serif;
+        }
+        
+        body {
+            background-color: #2c1a0f;
+            color: #e6d2b5;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 200, 100, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 180, 80, 0.1) 0%, transparent 20%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C6D3F' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 204, 102, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            background-color: rgba(60, 40, 20, 0.85);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 
+                0 0 30px rgba(255, 180, 80, 0.2),
+                inset 0 0 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid #8b5a2b;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e6b17e, transparent);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #8b5a2b;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 20%;
+            right: 20%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e6b17e, transparent);
+        }
+        
+        h1 {
+            color: #e6b17e;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            font-weight: normal;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #e6b17e, transparent);
+        }
+        
+        h2 {
+            color: #e6b17e;
+            margin: 25px 0 15px;
+            font-size: 1.8rem;
+            font-weight: normal;
+            border-left: 3px solid #e6b17e;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #d4a76a;
+            margin: 20px 0 10px;
+            font-size: 1.4rem;
+            font-weight: normal;
+        }
+        
+        .story-content {
+            background-color: rgba(80, 50, 25, 0.6);
+            padding: 25px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #8b5a2b;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.8;
+            position: relative;
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        .story-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C6D3F' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .day-section {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .search-container {
+            background-color: rgba(70, 45, 20, 0.7);
+            padding: 25px;
+            border-radius: 5px;
+            margin: 25px 0;
+            text-align: center;
+            border: 1px solid #8b5a2b;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .search-container::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(230, 177, 126, 0.3);
+            pointer-events: none;
+        }
+        
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        input[type="text"] {
+            padding: 12px 15px;
+            width: 70%;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px 0 0 4px;
+            background-color: rgba(40, 25, 10, 0.8);
+            color: #e6d2b5;
+            font-size: 1rem;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #e6b17e;
+            box-shadow: 0 0 10px rgba(230, 177, 126, 0.5);
+        }
+        
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(to bottom, #8b5a2b, #6b4420);
+            color: #e6d2b5;
+            border: 1px solid #8b5a2b;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:hover {
+            background: linear-gradient(to bottom, #9c6d3f, #7b5428);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hidden-page {
+            display: none;
+            background-color: rgba(70, 45, 20, 0.8);
+            padding: 25px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #d4a76a;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+        }
+        
+        .hidden-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C6D3F' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .quiz-container {
+            background-color: rgba(100, 70, 30, 0.2);
+            padding: 25px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #d4a76a;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .quiz-container::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(212, 167, 106, 0.3);
+            pointer-events: none;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .quiz-option {
+            padding: 12px;
+            background-color: rgba(80, 50, 25, 0.7);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .quiz-option:hover {
+            background-color: rgba(100, 70, 35, 0.8);
+            border-color: #d4a76a;
+        }
+        
+        .correct {
+            background-color: rgba(100, 130, 60, 0.3);
+            border-left: 4px solid #8fbc8f;
+        }
+        
+        .incorrect {
+            background-color: rgba(139, 0, 0, 0.3);
+            border-left: 4px solid #cd5c5c;
+        }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            display: none;
+            border-left: 3px solid #d4a76a;
+        }
+        
+        .character-dialogue {
+            font-style: italic;
+            color: #e6b17e;
+            margin: 10px 0;
+            padding-left: 20px;
+            border-left: 2px solid #e6b17e;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: linear-gradient(to bottom, #8b5a2b, #6b4420);
+            color: #e6d2b5;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(to bottom, #9c6d3f, #7b5428);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            background: linear-gradient(to bottom, #5a3a1a, #4a2a10);
+            color: #8b7355;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .keyword-hint {
+            color: #d4a76a;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .unlocked-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .keyword-tag {
+            background-color: rgba(100, 70, 30, 0.5);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #8b5a2b;
+        }
+        
+        .keyword-tag:hover {
+            background-color: rgba(139, 90, 43, 0.7);
+            transform: translateY(-2px);
+        }
+        
+        .progress-container {
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .progress-text {
+            color: #d4a76a;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: rgba(80, 50, 25, 0.7);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #8b5a2b, #d4a76a);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .welcome-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .start-btn {
+            padding: 15px 40px;
+            background: linear-gradient(to bottom, #8b5a2b, #6b4420);
+            color: #e6d2b5;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .start-btn:hover {
+            background: linear-gradient(to bottom, #9c6d3f, #7b5428);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .global-keywords {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .global-hint {
+            color: #d4a76a;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(230, 177, 126, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(230, 177, 126, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(230, 177, 126, 0.5); }
+        }
+        
+        .glowing {
+            animation: glow 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            input[type="text"] {
+                width: 100%;
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            button {
+                border-radius: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 欢迎界面 -->
+        <div id="welcome" class="day-section active">
+            <header>
+                <h1>杂货店之谜</h1>
+                <p>一场穿越时空的推理冒险</p>
+            </header>
+            
+            <div class="story-content">
+                <p>玩家是一名业余侦探，高中生，名字叫小雨，爱好各种推理小说、游戏及影视节目。</p>
+                <p>某天放学走进路边一家从未见过的杂货店里面，杂货店里面内饰繁复而华丽，虽然破旧但细节处十分精美，灯光昏黄并不明亮。</p>
+                <p>小雨四处逛了逛，看到一袋闪着光的开封过的情人梅，里面还有几粒看着很新鲜。</p>
+                <p>杂货店老板是一名穿着斗篷戴着礼帽的老爷爷，声音苍老而低沉，告诉小雨，这个店里的食物都是可食用的，不用担心保质期，出店后要在七天内食用完，不然就不能吃了。</p>
+                <p>小雨觉得很新奇，因为从包装上的时间来看这个情人梅已经过期二十年了，开封袋子里的梅子却没有任何风化痕迹，跟刚刚出炉的一样。</p>
+                <p>小雨买了回去，觉得店长既然说能吃肯定不会骗自己，睡前吃下了一颗，酸酸甜甜，很好吃。</p>
+                
+                <div class="global-keywords">
+                    <p class="global-hint">提示：游戏中存在隐藏的全局关键词，探索它们可能会发现额外内容</p>
+                </div>
+            </div>
+            
+            <div class="welcome-actions">
+                <button class="start-btn" onclick="startGame()">进入游戏</button>
+            </div>
+        </div>
+        
+        <!-- 第一天 -->
+        <div id="day1" class="day-section">
+            <h2>第一天</h2>
+            
+            <div class="story-content">
+                <p>小雨猛然惊醒，发现自己穿越成了一名女服务员，手上拿着扫帚，推着推车，似乎要去给某个房间做保洁，但是她的脑海里没有任何记忆。</p>
+                <p>旁边有个人推了推她，"还愣着干什么，快去给404房间打扫，下一批客人要进来了。"是个年轻女性，穿着一样的制服，脑海自动闪过她的名字——小婷，大堂经理，27，似乎和自己关系不错。</p>
+                <p>小雨于是推着车准备上四楼，电梯坏了，只能走楼梯上去，心里苦笑：怎么做个梦还要打扫卫生啊，我想看推理小说了麻麻。。。</p>
+                <p>刚上到三楼，突然发现台阶上有点状分布的血迹，颗粒比黄豆稍大，是鲜红的，应该是刚刚滴落的。</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-text">今日关键词进度: <span id="progressText1">0/3</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill1"></div>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <h3>关键词搜索</h3>
+                <p>输入关键词来获取更多信息</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput1" placeholder="输入关键词...">
+                    <button onclick="searchKeyword(1)">搜索</button>
+                </div>
+                <div class="keyword-hint">提示：今天有3个关键词等待发现</div>
+                
+                <div class="unlocked-keywords" id="unlockedKeywords1">
+                    <!-- 已解锁的关键词将动态显示在这里 -->
+                </div>
+            </div>
+            
+            <!-- 隐藏页面：小婷 -->
+            <div id="page-xiaoting" class="hidden-page">
+                <h3>熟悉的面孔（隐藏1）</h3>
+                <p>在小雨附身的服务生记忆中，这位大堂经理空降到酒店管理层，并在走投无路时将自己应聘，在一众服务生中对自己格外宽容，但是两人之前似乎并不认识。</p>
+                <p>小雨莫名对这张脸感到熟悉，想不起来在哪里见过她。（隐藏人物，后续系列有关键作用）</p>
+            </div>
+            
+            <!-- 隐藏页面：血迹 -->
+            <div id="page-xueji" class="hidden-page">
+                <h3>服务生的回忆1</h3>
+                <p>台阶上为什么会有血液？小雨联想到，刚才一个前额有些秃顶的中年男子从她身边走过，手里拎着一个旅行箱。这个人服务员认识，是住在306房间的客人。</p>
+                <p>台阶上的血迹是不是与他有关？于是小雨追了出去，那个客人刚好走到门口，小雨便向他询问血迹是不是他的？秃顶男子扭头说了句："是我的，刚刚手割破了滴的。"说完就骑着摩托车走了。</p>
+                <p>小雨半信半疑，觉得很奇怪：如果只是割破了手，为什么会有这么大滴的血迹？于是，她开门进了306房间。这是一个单人间，面积不大，只有十平方米左右，但是屋里异常整洁，地板也很干净，像是被人打扫过一样。</p>
+            </div>
+            
+            <!-- 隐藏页面：306房间 -->
+            <div id="page-306" class="hidden-page">
+                <h3>服务员的回忆2</h3>
+                <p>当小雨走到卫生间的时候，角落里的一个旅行袋让她浑身毛骨悚然——旅行袋里面还有个塑料袋，她隔着旅行袋戳了戳，好像是一个硬硬的球状物体。</p>
+                <p>旅行袋装着一个女性头颅，根据她的面容和牙齿结构判断，死者的年纪大概在30岁左右，身高在1米6左右，留长发。在死者的脖子上，侦查员发现了一根红色的细绳。</p>
+                <p>小雨联想到外面的血滴，立马冲出了房间报警。</p>
+                
+                <div class="quiz-container">
+                    <h3>小雨的推理小剧场</h3>
+                    <p>死者的死因应该是：</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, 'A', 1)">A.原发性自然性疾病</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'B', 1)">B.溺水</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'C', 1)">C.机械性窒息死亡</div>
+                    </div>
+                    <div class="explanation" id="explanation1">
+                        <p><strong>正确答案："机械性窒息死亡"</strong>，即死者被凶手用绳子勒死之后，再被分尸。</p>
+                        <p><strong>科普：</strong>机械性窒息（mechanical asphyxia），是指因机械性暴力作用引起的呼吸障碍所导致的窒息。由于机械作用阻碍人体呼吸，致使体内缺氧，二氧化碳蓄积而引起的生理功能障碍。</p>
+                        <p>引致机械性窒息的方式很多，如缢颈、勒颈、扼颈、闷压口鼻或压迫胸腹部，以及异物或溺液进入呼吸道等。由机械性窒息而引致的死亡发生较快，常被用作他杀、自杀和杀害后伪装为自杀的手段。</p>
+                        <p class="character-dialogue">小雨有话说："天呐，好刺激！第一线的杀人现场，凶手不会就是那个秃头男人吧，太可惜了我应该直接抓住他。这个无头女尸的案子怎么听起来这么熟悉，好像听爸爸提起过类似案件，凶手一直没有落网。"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" id="nextBtn1" onclick="nextDay(1)" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 第二天 -->
+        <div id="day2" class="day-section">
+            <h2>第二天</h2>
+            
+            <div class="story-content">
+                <p>小雨努力回想那个男人的面庞，追出门时和他对视了一眼，眼神阴冷，三白眼，面部较平整，狠狠瞪了自己一下，好像要把自己千刀万剐，那绝对不是一个激情杀人新手的眼神！小雨猛然从睡梦中惊醒，新的一天开始了，照旧去学校上课，似乎昨晚的只是一场梦。</p>
+                <p>晚上回到家，疲惫了一天，小雨躺在床上还想继续昨天的梦，缺怎么也睡不着，口干舌燥。看到床边折射月光的情人梅包装纸，她拿起一颗润润嗓子，闭着眼睛，不知不觉又去到了那个世界。</p>
+                <p>这一次醒来，小雨显然很快适应了自己的身份，观察钟表时间，似乎时间从她醒来才开始流逝。酒店门口迎来一大群警察和法医工作者，小雨连忙带着他们去往案发地点。经过勘验，警方发现旅行袋里为无头女尸。</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-text">今日关键词进度: <span id="progressText2">0/2</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill2"></div>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <h3>关键词搜索</h3>
+                <p>输入关键词来获取更多信息</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput2" placeholder="输入关键词...">
+                    <button onclick="searchKeyword(2)">搜索</button>
+                </div>
+                <div class="keyword-hint">提示：今天有2个关键词等待发现</div>
+                
+                <div class="unlocked-keywords" id="unlockedKeywords2">
+                    <!-- 已解锁的关键词将动态显示在这里 -->
+                </div>
+            </div>
+            
+            <!-- 隐藏页面：无头女尸 -->
+            <div id="page-wutounvshi" class="hidden-page">
+                <h3>尸体详细检查</h3>
+                <p>警方在现场的床头柜上发现了一只女包，包里有一些价格低廉的化妆品和一包开了口的情人梅。警方判断，这个包应该是属于受害人的。</p>
+                <p>小雨在看到那包情人梅的时候几乎停滞了呼吸，不禁走上前观察，发现和自己买到的正是同一款，真的有这么巧合吗？凭着高超的记忆，小雨回想了条形码编码，惊恐地发现正是同一个，连包装拆开的弧度都诡异地一致。</p>
+                <p>"邓队，由于尸体只剩下一个头颅，很难从衣着等角度判断尸源。负责外围的侦查员努力地比对了当地上报的失踪人口，但是一无所获。"一个警员汇报说。</p>
+                <p>"诶诶，小雨，别乱碰现场，老毛病又犯了是吧。"一个身着警服梳着大背头听着汇报年轻男子碰碰小雨的手腕，示意她放下，言语间十分亲密。不是吧，这不是老爸吗。小雨震惊了，此人风流漫不经心的样子正是自己父亲年轻时候。</p>
+                <p>老爸怎么还跟女服务员勾搭上了，这么熟悉，为什么我记忆里都没有这个人？小雨十分疑惑，面上假装熟络套话，"我不是想看看现场证物，给你们工作减减负担吗，怎么警察大人也要管吗？""不好好上学，来这边当什么服务员，赶紧回学校学习去。"</p>
+                <p>小雨更加困惑了，父亲风华正茂的年纪哪里来这么大的女儿呢，突然一阵记忆涌入脑海。原来这个服务员也叫小雨，是父亲战友的遗孤，托付给父亲抚养，前几个月逃学出了车祸，丢失了部分记忆。为什么自己从来没听父亲提起过呢，带着重重疑问，小雨打算先破解这个案子。</p>
+                <p>"邓叔叔，我会好好学习的，但是请你让我跟着一起破这个案子吧，只有我见过嫌疑人的正脸，我能指认出他。"小雨向邓队恳求，知道他最受不了撒娇这一套。</p>
+                <p>"不行，这个案子很危险，你一个女孩子跟我们办案也不方便。"没想到邓队直接拒绝了。</p>
+                <p>"我会保护好自己的，这个案件就发生在我身边，我是第一目击者，不能坐视不理。"小雨给出了自己的分析并再三保证，最终邓队考虑到凶手可能会威胁小雨安全还是默认了跟在自己身边。</p>
+                <p>侦查的重点转移到了那个离开306房间拎着旅行箱的秃顶男子身上。然而，由于当时这家酒店是私人经营，没有住客身份证登记的制度，警方无从了解这个男子的身份。而且酒店内的监控探头时好时坏的，服务员只能确定来开房时只有该男子一个人，女受害人什么时候来的没有人知道。</p>
+            </div>
+            
+            <!-- 隐藏页面：监控 -->
+            <div id="page-jiankong" class="hidden-page">
+                <h3>对嫌疑人的侧写</h3>
+                <p>通过调取为数不多的监控，警察发现了男子离开房间时的身影。</p>
+                <p>从男子的行为举止上看，他离开房间时动作从容，完全不慌不忙，也从侧面说明了他心理素质极好。</p>
+                <p>据服务员回忆，男子离开时骑着摩托车。但由于宾馆处于城乡结合部，人员来往极其密集，调取沿路的监控警方无法发现男子的身影。</p>
+                <p>不过，住在307房间的客人很快提供了一条有用的线索。他说，在当天下午4点15分左右，听到306房间曾传来女子的喊叫声。</p>
+                <p>警方推测，很有可能女子就是在当时遇害的。这也给警方锁定女子来到宾馆的时间提供了重要的参考依据。</p>
+                <p>警方随即调取了4点15分之前宾馆附近的监控，发现在3点50分左右，秃顶男子出现在宾馆附近的马路上，看上去像是在等人。</p>
+                <p>4点，秃顶男子和一个红衣女子一起边说话边朝旅馆走去，可见红衣女子是认识该男子的，不存在绑架胁迫等情况。4点左右两人到达宾馆，和307客人的叙述吻合，而该红衣女子之后再也没有在监控中出现过，警方认为，她应该就是受害人。</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" id="nextBtn2" onclick="nextDay(2)" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 第三天 -->
+        <div id="day3" class="day-section">
+            <h2>第三天</h2>
+            
+            <div class="story-content">
+                <p>小雨感到头疼，觉得脑中思绪纷飞，一阵铃声将她唤醒，新的一天又开始了。回到家，她迫不及待地咽下那颗神奇的梅子，昏昏入睡。小雨在梦中醒来，发现自己又回到了酒店现场，时间似乎从她离开的那一刻继续流动。</p>
+                <p>警方正在忙碌地收集证据，小雨注意到邓队眉头紧锁，显然案件进展缓慢。通过提取探头，警方获得了秃顶男子的正面照，经过小雨的辨认，确定就是那个秃头男。考虑到他可能涉及连环杀人案，他们很快将案件通报给周边地市，很快，一条来自临近a市的消息就传来了。她决定主动出击，利用自己的推理能力帮忙。</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-text">今日关键词进度: <span id="progressText3">0/1</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill3"></div>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <h3>关键词搜索</h3>
+                <p>输入关键词来获取更多信息</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput3" placeholder="输入关键词...">
+                    <button onclick="searchKeyword(3)">搜索</button>
+                </div>
+                <div class="keyword-hint">提示：今天有1个关键词等待发现</div>
+                
+                <div class="unlocked-keywords" id="unlockedKeywords3">
+                    <!-- 已解锁的关键词将动态显示在这里 -->
+                </div>
+            </div>
+            
+            <!-- 隐藏页面：a市的消息 -->
+            <div id="page-acity" class="hidden-page">
+                <h3>跨市连环案</h3>
+                <p>小雨回忆起前一天在a市的消息，主动向邓队提出："邓叔叔，a市的无头女尸案和这里的案件手法相似，凶手可能是个惯犯。我们应该比对两起案件的细节，比如分尸工具和伤口特征。"</p>
+                <p>邓队点头，吩咐警员联系a市警方调取档案，赞许地看着小雨，心中暗叹果然继承了父亲的刑侦天赋。</p>
+                <p>小雨在旁翻阅文件，发现两起案件都使用了红色细绳勒颈，分尸切口整齐，她推理凶手可能有医学或屠宰背景，但郑玺安的资料显示他只是一名普通工人，这让她疑惑不已。</p>
+                
+                <div class="quiz-container">
+                    <h3>小雨的推理小剧场</h3>
+                    <p>凶手的分尸手法娴熟，可能通过什么途径学习？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, 'A', 3)">A.自学解剖知识</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'B', 3)">B.从事过相关职业</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'C', 3)">C.多次实践</div>
+                    </div>
+                    <div class="explanation" id="explanation3">
+                        <p><strong>正确答案："多次实践"</strong>，即凶手通过多次杀人分尸来提升手法，符合连环杀手特征。</p>
+                        <p><strong>科普：</strong>连环杀手往往在多次犯罪中完善手法，从最初生疏到后期熟练，反映出心理变态和习惯性行为。</p>
+                        <p class="character-dialogue">小雨有话说："凶手太可怕了，必须尽快抓住他！但为什么郑玺安的档案里没有医学背景？难道他隐藏了身份？"</p>
+                    </div>
+                </div>
+                
+                <p>晚上，小雨在酒店休息时，偷偷查看警方资料，发现郑玺安的QQ聊天记录中有大量女性联系人。她联想到那包情人梅，决定从这入手。"这包梅子和我现实中的一样，难道是穿越的线索？"她自言自语，决定第二天重点调查情人梅的出处。</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" id="nextBtn3" onclick="nextDay(3)" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 第四天 -->
+        <div id="day4" class="day-section">
+            <h2>第四天</h2>
+            
+            <div class="story-content">
+                <p>睡了没一会，铃声吵醒了小雨，发现周围陈设还是熟悉的味道。深夜，她咽下一颗梅子，沉沉睡去。小雨醒来后，主动请求参与b市的调查。邓队无奈同意，带她前往b市。</p>
+                <p>在b市客运站，小雨模仿警察询问大巴司机，司机确认红衣女子詹净从b市上车，并提到她买了一包情人梅。小雨仔细观察情人梅的价格标签，确认是b市物价所监制，她推理："这包梅子可能是詹净在b市购买的，但为什么和我那包一模一样？难道这个梦和现实有联系？"</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-text">今日关键词进度: <span id="progressText4">0/1</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill4"></div>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <h3>关键词搜索</h3>
+                <p>输入关键词来获取更多信息</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput4" placeholder="输入关键词...">
+                    <button onclick="searchKeyword(4)">搜索</button>
+                </div>
+                <div class="keyword-hint">提示：今天有1个关键词等待发现</div>
+                
+                <div class="unlocked-keywords" id="unlockedKeywords4">
+                    <!-- 已解锁的关键词将动态显示在这里 -->
+                </div>
+            </div>
+            
+            <!-- 隐藏页面：情人梅 -->
+            <div id="page-qingrenmei" class="hidden-page">
+                <h3>跨时空的巧合</h3>
+                <p>小雨在b市警局协助下，找到出售情人梅的小店。店主回忆詹净曾来购物，但小雨发现店铺早已倒闭二十年，她买的梅子也是同一批次。</p>
+                <p>小雨陷入沉思："这个杂货店和梦中的案件似乎有神秘关联，店长老爷爷的话提醒了我——七天内食用完，否则不能吃。难道七天内破案是关键？"</p>
+                <p>下午，小雨通过詹净的手机记录，发现她最后通话的汕头号码属于郑玺安。她推理郑玺安可能用多个号码作案，建议警方扩大通讯排查。警方调取记录后，果然发现其他失踪女性联系过相同号码。</p>
+                
+                <div class="quiz-container">
+                    <h3>小雨的推理小剧场</h3>
+                    <p>凶手如何选择受害者？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, 'A', 4)">A.随机作案</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'B', 4)">B.针对特定女性群体</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'C', 4)">C.通过网络聊天 targeted</div>
+                    </div>
+                    <div class="explanation" id="explanation4">
+                        <p><strong>正确答案："通过网络聊天 targeted"</strong>，即凶手利用网络伪装身份，针对爱慕虚荣的女性。</p>
+                        <p class="character-dialogue">小雨有话说："网络危险啊，爸爸总提醒我别乱加网友，原来真有这种恶魔！"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" id="nextBtn4" onclick="nextDay(4)" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 第五天 -->
+        <div id="day5" class="day-section">
+            <h2>第五天</h2>
+            
+            <div class="story-content">
+                <p>小雨在梦中被警笛声惊醒，警方根据线索锁定了郑玺安在a市的藏身处。小雨坚持跟随抓捕队伍，邓队严厉拒绝："太危险了，你留在警局！"但小雨偷偷溜出，骑自行车尾随警方车队。她心想："我必须亲眼看到凶手落网，才能解开这个梦的谜团。"</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-text">今日关键词进度: <span id="progressText5">0/1</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill5"></div>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <h3>关键词搜索</h3>
+                <p>输入关键词来获取更多信息</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput5" placeholder="输入关键词...">
+                    <button onclick="searchKeyword(5)">搜索</button>
+                </div>
+                <div class="keyword-hint">提示：今天有1个关键词等待发现</div>
+                
+                <div class="unlocked-keywords" id="unlockedKeywords5">
+                    <!-- 已解锁的关键词将动态显示在这里 -->
+                </div>
+            </div>
+            
+            <!-- 隐藏页面：凶手 -->
+            <div id="page-xiongshou" class="hidden-page">
+                <h3>恶魔的真面目</h3>
+                <p>在a市村庄，警方包围郑玺安的住所。小雨躲在远处观察，看到郑玺安被押出时，眼神阴冷地扫视周围。</p>
+                <p>突然，小雨注意到他手腕有一道疤痕，和她记忆中秃头男的特征吻合。她冲上前大喊："他就是凶手！我见过他！"郑玺安恶狠狠地瞪向她，小雨不禁后退一步。</p>
+                <p>警方搜查住所，发现大量女性物品，小雨协助清点，发现一件红衣和詹净的相似。小雨推理："郑玺安可能保留了受害者的物品作为纪念，这是连环杀手的典型行为。"</p>
+                <p>邓队斥责她冒险，但小雨辩解："我没事，只是觉得案件还没完——分尸手法这么熟练，他肯定还杀了其他人！"</p>
+                <p>晚上，小雨在警局做笔录时，发现郑玺安的QQ记录中有胡凤的联系信息。她主动申请参与审讯，但被拒绝。失望之余，她偷偷查看档案，发现胡凤失踪案与a市无头女尸案有关联。</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" id="nextBtn5" onclick="nextDay(5)" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 第六天 -->
+        <div id="day6" class="day-section">
+            <h2>第六天</h2>
+            
+            <div class="story-content">
+                <p>小雨醒来后，决定独自调查胡凤案。她假扮成记者，走访胡凤的家人，得知胡凤喜欢上网聊天，曾见过网友。小雨推理："郑玺安可能用同样手法骗胡凤见面，然后杀害。"她返回警局，将线索汇报给邓队。警方重启审讯，在多轮心理战后，郑玺安承认杀害胡凤和小梅。</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-text">今日关键词进度: <span id="progressText6">0/2</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill6"></div>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <h3>关键词搜索</h3>
+                <p>输入关键词来获取更多信息</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput6" placeholder="输入关键词...">
+                    <button onclick="searchKeyword(6)">搜索</button>
+                </div>
+                <div class="keyword-hint">提示：今天有2个关键词等待发现</div>
+                
+                <div class="unlocked-keywords" id="unlockedKeywords6">
+                    <!-- 已解锁的关键词将动态显示在这里 -->
+                </div>
+            </div>
+            
+            <!-- 隐藏页面：胡凤 -->
+            <div id="page-hufeng" class="hidden-page">
+                <h3>更多的受害者</h3>
+                <p>小雨在审讯室外监听，听到郑玺安描述杀害小梅的过程时，浑身发冷。她想起父亲曾提过一起悬案，正是小梅案。"原来爸爸当年没破的案子是这样！"她喃喃自语。</p>
+                <p>邓队出来后，小雨追问细节，邓队叹气："这家伙罪大恶极，但证据链还需完善。"小雨建议："可以从分尸工具入手，他可能用了特殊刀具。"警方随后在郑玺安家中找到隐藏的刀具，上面有血迹反应。</p>
+                
+                <div class="quiz-container">
+                    <h3>小雨的推理小剧场</h3>
+                    <p>如何证明多起案件关联？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, 'A', 6)">A. DNA比对</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'B', 6)">B. 工具痕迹分析</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'C', 6)">C. 受害者社交圈重叠</div>
+                    </div>
+                    <div class="explanation" id="explanation6">
+                        <p><strong>正确答案："工具痕迹分析"</strong>，即通过刀具切口匹配多起分尸案，形成证据链。</p>
+                        <p><strong>科普：</strong>法医工具痕迹学可以分析刀具特征，同一把刀在不同案件中的切口模式一致，就能串联案件。</p>
+                        <p class="character-dialogue">小雨有话说："天啊，我终于帮上忙了！但明天是第七天，我得在梦里抓住他，否则现实可能改变？"</p>
+                    </div>
+                </div>
+                
+                <p>睡前，小雨吃下最后一颗情人梅，暗下决心："明天一定要做个了结。"</p>
+            </div>
+            
+            <!-- 隐藏页面：分尸手法 -->
+            <div id="page-fenshi" class="hidden-page">
+                <h3>凶手的交代</h3>
+                <p>郑玺安说，他9年前和妻子来到广东打工，被妻子嫌弃没用不会赚钱，于是妻子就和他离婚跟别人跑了。后来他也谈过一个女朋友小梅，交往一段时间后小梅也嫌他没用，也离他而去。</p>
+                <p>他一个人很孤单，就开始通过网上聊天结交朋友。他发现，一开始和他聊得很投机的女性一旦知道他是个打工的就不愿意理他，而当他把个人资料改成私营老板后，许多女人反而很主动地贴上来和他聊天。</p>
+                <p>至此，郑玺安开始憎恨女性：特别是那些爱慕虚荣，爱钱的女性，他觉得自己有必要给她们一点教训，于是开始以自己是私企老板给介绍工作为由，频繁和女网友见面，并且通常是在发生关系以后带着女网友的财物离开，为了防止那些女网友马上报警，他还会把他们的衣服也拿走。所以他家才有那么多女性的衣服。</p>
+                <p>事实上，被抓时郑玺安正在上网聊天，警察发现他聊天的网友可以用"海量"来形容——8个QQ同时在线，加起来有几千个网友，甚至还约了好几个女性第二天见面......而此时，离张静遇害仅仅只过了5天。很难想象如果不是被抓，曾祥福还会祸害多少人？</p>
+                <p>而据曾祥福说，2号那天，和詹净见面后，他本来只想和她发生关系然后抢东西走人。但当他先告诉了詹净自己骗了她，让她把钱都给他的时候，詹净开始大喊大叫，他怕被人发现，就用随身携带的绳子勒死詹净，然后离开宾馆，去买了箱子等物品，晚上9点回来进行分尸。</p>
+                <p>没想到离开的时候被服务员撞见了。但仍然觉得无法解释：如果只是杀了詹净一个人，既不是屠户也不是医生的他手法为何如此娴熟？使用相似的分尸手法，又住在距离a市无头女尸发现地几公里居住的郑玺安，难道真的只是巧合吗？</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" id="nextBtn6" onclick="nextDay(6)" disabled>下一页</button>
+            </div>
+        </div>
+        
+        <!-- 第七天 -->
+        <div id="day7" class="day-section">
+            <h2>第七天</h2>
+            
+            <div class="story-content">
+                <p>小雨在梦中醒来，发现自己不在酒店，而是在一个废弃工厂外——警方监控显示郑玺安可能在这里处理证据。小雨偷偷潜入，发现郑玺安竟然越狱了（设定为梦中戏剧性情节），正在工厂内焚烧物品。她屏住呼吸，躲在角落观察。</p>
+                <p>郑玺安察觉动静，转身看到她，狞笑着冲过来："小丫头，你找死！"</p>
+                <p>小雨转身逃跑，但工厂大门锁住。她急中生智，用手机报警，并大喊："邓叔叔，我在城西工厂！"郑玺安追上，抓住她的手腕，小雨挣扎中踢中他的膝盖，郑玺安惨叫松手。</p>
+                <p>但他又抽出一把刀，小雨躲闪不及，手臂被划伤，鲜血直流。"好痛！但这不是现实，我不能退缩！"她咬牙坚持，利用杂物阻挡郑玺安。</p>
+                <p>关键时刻，警方赶到，邓队冲进来制服郑玺安。小雨瘫坐在地，看着手臂的伤口，突然眼前一黑。</p>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" onclick="nextDay(7)">下一页</button>
+            </div>
+        </div>
+        
+        <!-- 结局 -->
+        <div id="ending" class="day-section">
+            <h2>回到现实世界</h2>
+            
+            <div class="story-content">
+                <p>小雨猛然从床上惊醒，窗外阳光明媚。她检查手臂，没有伤口，但情人梅的包装纸已消失。</p>
+                <p>她打开新闻，搜索相关词条："悬案告破！连环杀手郑玺安被执行死刑。"报道详细描述了案件过程，包括小雨在梦中参与的细节，但是并没有提到小雨。</p>
+                <p>她恍然大悟："原来那个杂货店让我穿越到过去，改变了历史！"父亲邓队来电，声音欣慰："小雨，多年前的案子终于解决了。"小雨笑了，看来她的推理冒险还没结束。</p>
+                
+                <div class="quiz-container">
+                    <h3>小雨的推理小剧场</h3>
+                    <p>穿越梦境的真相是？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, 'A', 7)">A. 心理投射</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'B', 7)">B. 超自然现象</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 'C', 7)">C. 平行世界</div>
+                    </div>
+                    <div class="explanation" id="explanation7">
+                        <p class="character-dialogue">小雨有话说："不管怎样，正义得到了伸张！下次再去那家杂货店，我要问问老爷爷更多秘密。"</p>
+                        <p>更多系列敬请期待后续作品，更加紧张刺激，揭秘神秘杂货店背后的真相，小雨穿越的秘密，父亲隐藏心底的信仰.......</p>
+                        <p><em>注意：本作品部分参考真实事件改编，若有侵权或者疑问请联系作者修改，也欢迎更多玩家给出有趣的玩耍建议和剧情的期待。</em></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousDay()">上一页</button>
+                <button class="nav-btn" onclick="restartGame()">重新开始</button>
+            </div>
+        </div>
+        
+
+    <script>
+        // 游戏状态
+        let currentDay = 0; // 0=欢迎界面, 1=第一天, ..., 7=第七天, 8=结局
+        
+        // 每日关键词配置
+        const dailyKeywords = {
+            1: {
+                keywords: ["小婷", "血迹", "306房间"],
+                unlocked: [],
+                required: 3
+            },
+            2: {
+                keywords: ["无头女尸", "监控"],
+                unlocked: [],
+                required: 2
+            },
+            3: {
+                keywords: ["a市的消息"],
+                unlocked: [],
+                required: 1
+            },
+            4: {
+                keywords: ["情人梅"],
+                unlocked: [],
+                required: 1
+            },
+            5: {
+                keywords: ["凶手"],
+                unlocked: [],
+                required: 1
+            },
+            6: {
+                keywords: ["胡凤", "分尸"],
+                unlocked: [],
+                required: 2
+            }
+        };
+        
+        
+        // 关键词映射
+        const keywordMap = {
+            "小婷": "page-xiaoting",
+            "血迹": "page-xueji",
+            "306房间": "page-306",
+            "无头女尸": "page-wutounvshi",
+            "监控": "page-jiankong",
+            "a市的消息": "page-acity",
+            "情人梅": "page-qingrenmei",
+            "凶手": "page-xiongshou",
+            "胡凤": "page-hufeng",
+            "分尸": "page-fenshi",
+            ...globalKeywords
+        };
+        
+        // 正确答案
+        const correctAnswers = {
+            1: "C",
+            3: "C",
+            4: "C",
+            6: "B",
+            7: "B"
+        };
+        
+        // 开始游戏
+        function startGame() {
+            changeDay(1);
+        }
+        
+        // 切换天数
+        function changeDay(day) {
+            // 隐藏所有天数
+            document.querySelectorAll('.day-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 显示指定天数
+            document.getElementById(`day${day}`).classList.add('active');
+            currentDay = day;
+            
+            // 更新导航按钮状态
+            updateNavigation();
+            
+            // 更新进度显示
+            updateProgress(day);
+        }
+        
+        // 更新进度显示
+        function updateProgress(day) {
+            if (day >= 1 && day <= 6) {
+                const progress = dailyKeywords[day];
+                const progressText = document.getElementById(`progressText${day}`);
+                const progressFill = document.getElementById(`progressFill${day}`);
+                
+                if (progressText && progressFill) {
+                    const percentage = (progress.unlocked.length / progress.required) * 100;
+                    progressText.textContent = `${progress.unlocked.length}/${progress.required}`;
+                    progressFill.style.width = `${percentage}%`;
+                }
+            }
+        }
+        
+        // 下一页
+        function nextDay(current) {
+            if (current < 7) {
+                // 检查是否已解锁所有必需关键词
+                if (dailyKeywords[current].unlocked.length >= dailyKeywords[current].required) {
+                    changeDay(current + 1);
+                } else {
+                    alert(`请先解锁今天的所有关键词才能继续前进！\n当前进度: ${dailyKeywords[current].unlocked.length}/${dailyKeywords[current].required}`);
+                }
+            } else if (current === 7) {
+                // 显示结局
+                document.querySelectorAll('.day-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById('ending').classList.add('active');
+                currentDay = 8;
+                updateNavigation();
+            }
+        }
+        
+        // 上一页
+        function previousDay() {
+            if (currentDay > 1) {
+                changeDay(currentDay - 1);
+            } else {
+                // 返回欢迎界面
+                document.querySelectorAll('.day-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById('welcome').classList.add('active');
+                currentDay = 0;
+                updateNavigation();
+            }
+        }
+        
+        // 重新开始游戏
+        function restartGame() {
+            // 重置游戏状态
+            currentDay = 0;
+            for (let day in dailyKeywords) {
+                dailyKeywords[day].unlocked = [];
+            }
+            
+            // 隐藏所有隐藏页面
+            document.querySelectorAll('.hidden-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // 重置所有搜索框
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`searchInput${i}`).value = '';
+            }
+            
+            // 重置所有已解锁关键词显示
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`unlockedKeywords${i}`).innerHTML = '';
+            }
+            
+            // 重置所有进度条
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`progressFill${i}`).style.width = '0%';
+                document.getElementById(`progressText${i}`).textContent = '0/' + dailyKeywords[i].required;
+            }
+            
+            // 重置所有下一页按钮
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById(`nextBtn${i}`).disabled = true;
+            }
+            
+            // 显示欢迎界面
+            document.querySelectorAll('.day-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('welcome').classList.add('active');
+            
+            updateNavigation();
+        }
+        
+        // 更新导航按钮状态
+        function updateNavigation() {
+            // 在实际实现中，这里可以根据游戏进度启用/禁用导航按钮
+        }
+        
+        // 搜索关键词
+        function searchKeyword(day) {
+            const input = document.getElementById(`searchInput${day}`);
+            const keyword = input.value.trim();
+            
+            if (!keyword) return;
+            
+            // 检查关键词是否有效
+            if (keywordMap[keyword]) {
+                // 显示对应的隐藏页面
+                const pageId = keywordMap[keyword];
+                const page = document.getElementById(pageId);
+                page.style.display = 'block';
+                
+                // 如果是每日关键词，添加到已解锁列表
+                if (dailyKeywords[day] && dailyKeywords[day].keywords.includes(keyword) && 
+                    !dailyKeywords[day].unlocked.includes(keyword)) {
+                    dailyKeywords[day].unlocked.push(keyword);
+                    updateUnlockedKeywords(day);
+                    updateProgress(day);
+                    
+                    // 检查是否已解锁所有必需关键词
+                    if (dailyKeywords[day].unlocked.length >= dailyKeywords[day].required) {
+                        document.getElementById(`nextBtn${day}`).disabled = false;
+                        document.getElementById(`nextBtn${day}`).classList.add('glowing');
+                    }
+                }
+                
+                // 清空输入框
+                input.value = '';
+            } else {
+                alert('关键词无效，请尝试其他关键词。');
+            }
+        }
+        
+        // 更新已解锁关键词显示
+        function updateUnlockedKeywords(day) {
+            const container = document.getElementById(`unlockedKeywords${day}`);
+            container.innerHTML = '';
+            
+            if (dailyKeywords[day]) {
+                dailyKeywords[day].unlocked.forEach(keyword => {
+                    const tag = document.createElement('div');
+                    tag.className = 'keyword-tag';
+                    tag.textContent = keyword;
+                    tag.onclick = function() {
+                        const pageId = keywordMap[keyword];
+                        const page = document.getElementById(pageId);
+                        page.style.display = page.style.display === 'none' ? 'block' : 'none';
+                    };
+                    container.appendChild(tag);
+                });
+            }
+            
+           
+        }
+        
+        // 检查答案
+        function checkAnswer(element, selectedAnswer, day) {
+            const correctAnswer = correctAnswers[day];
+            
+            // 移除所有选项的样式
+            element.parentNode.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+            });
+            
+            // 显示答案和解释
+            const explanation = element.parentNode.parentNode.querySelector('.explanation');
+            
+            if (selectedAnswer === correctAnswer) {
+                element.classList.add('correct');
+                explanation.style.display = 'block';
+            } else {
+                element.classList.add('incorrect');
+                
+                // 显示正确答案
+                const correctOption = element.parentNode.querySelector(`.quiz-option:nth-child(${correctAnswer.charCodeAt(0) - 64})`);
+                if (correctOption) {
+                    correctOption.classList.add('correct');
+                }
+                
+                explanation.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
